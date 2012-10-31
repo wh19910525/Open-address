@@ -25,6 +25,8 @@ private:
     QStringList args;
     QString ttt;
 
+    QMouseEvent *tmpe;
+
 
 protected:
     void mousePressEvent(QMouseEvent *);

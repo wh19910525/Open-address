@@ -8,6 +8,9 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->setupUi(this);
     process = new QProcess(this);
     program = "explorer.exe";
+
+    //当第一次 打开 本程序时，就会 显示出来 粘贴板的内容
+    mousePressEvent(tmpe);
 }
 
 MainWindow::~MainWindow()
@@ -23,7 +26,27 @@ void MainWindow::mousePressEvent(QMouseEvent *e)
 
     //获取 Line Edit控件里的 字符串
     ttt = ui->textEdit_address->text();
-    args<<ttt;
+
+    //删除 字符串里的 "$"字符
+    ttt.remove("$");
+    //用 "\"替换 当前字符串里 所有的 "/"
+    ttt.replace(QString("/"), QString("\\"));
+
+    //================= start ========================
+    ttt.replace(QString("hai.wang@droid07-sz:\\mnt"), QString("\\\\10.28.8.17"));
+    ttt.replace(QString("hai.wang@droid05-sz:\\mnt"), QString("\\\\10.28.8.15"));
+    ttt.replace(QString("hai.wang@droid01-sz:\\mnt"), QString("\\\\10.28.8.10"));
+
+
+
+
+    //======================== end ==============================
+    //在 另一个 Line edit 里显示 转换后的 字符串
+    ui->lineEdit->clear();
+    ui->lineEdit->setText(ttt);
+
+
+
 }
 
 
@@ -33,7 +56,9 @@ void MainWindow::on_pushButton_clicked()
     //QString program="explorer.exe";
     //QStringList args;
     //QString ttt = "\\10.28.8.15\nfsroot\hai.wang\ics-amlogic-g06-0525-20120808145125";
-
+    args.clear();
+    args<<ttt;
+    //process->start(program,args);
     process->start(program,args);
     args.clear();
 }
