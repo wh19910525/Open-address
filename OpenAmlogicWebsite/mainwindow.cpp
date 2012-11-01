@@ -7,7 +7,12 @@ MainWindow::MainWindow(QWidget *parent) :
 {
     ui->setupUi(this);
     process = new QProcess(this);
+
+    //设置窗口标题
     program = "explorer.exe";
+    curfilename = tr("OpenAddress");
+
+    setWindowTitle(curfilename);
 
     //当第一次 打开 本程序时，就会 显示出来 粘贴板的内容
     mousePressEvent(tmpe);
@@ -56,9 +61,17 @@ void MainWindow::on_pushButton_clicked()
     //QString program="explorer.exe";
     //QStringList args;
     //QString ttt = "\\10.28.8.15\nfsroot\hai.wang\ics-amlogic-g06-0525-20120808145125";
+
+
     args.clear();
     args<<ttt;
-    //process->start(program,args);
     process->start(program,args);
-    args.clear();
+    //process->execute(program,args);
+   // args.clear();
 }
+
+
+
+
+
+

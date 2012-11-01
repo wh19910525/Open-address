@@ -24,7 +24,7 @@ private:
     QString program;
     QStringList args;
     QString ttt;
-
+    QString curfilename;
     QMouseEvent *tmpe;
 
 
