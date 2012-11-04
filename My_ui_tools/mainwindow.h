@@ -25,7 +25,7 @@ public:
     explicit MainWindow(QWidget *parent = 0);
     ~MainWindow();
     bool loadFile(const QString &fileName); // ╪стьнд╪Ч
-
+    void readOutput();
 
 
 
@@ -43,6 +43,7 @@ private:
     QStringList args;
 
     QString curFile;
+    QString output;
 
 
 };
